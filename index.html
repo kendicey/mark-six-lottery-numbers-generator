@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			* {
+				text-align: center;
+				justify-content: center;
+				font-family: "Century Gothic", Arial, sans-serif;
+			}
+			#display {
+				width: 200px;
+				height: 200px;
+				border-radius: 25px;
+				background-color: #abffe8ff;
+				display: inline-block;
+				margin-top: 40px;
+				margin-bottom: 50px;
+				padding: 10px;
+				line-height: 200px;
+				font-size: 3em;
+				font-weight: bolder;
+			}
+			@keyframes mymove {
+			50% {transform: rotate(360deg);}
+			}
+			.numbers {
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				background-color: lightgrey;
+				display: inline-block;
+				margin: 30px 10px 0 10px;
+			}
+			.numbers.active {
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				background-color: #abffe8ff;
+				display: inline-block;
+				line-height: 100px;
+				font-size: 2em;
+			}
+			#button {
+				background-color: yellow;
+				border-radius: 25px;
+				height: 30px;
+				padding: 1em 1em 2em 1em;
+				font-weight: bold;
+			}
+			#button:active {
+				background-color: #abffe8ff;
+			}
+			#reset {
+				background-color: yellow;
+				border-radius: 25px;
+				height: 30px;
+				padding: 1em 1em 2em 1em;
+				font-weight: bold;
+				display: none;
+			}
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<h1>Mark Six Lottery Numbers Generator</h1>
+		<div id="display"></div>
+		<div id="btn"><input type="button" id="button" value="GENERATE">&nbsp;&nbsp;<input type="button" id="reset" value="START AGAIN"></div>
+		<div class="numbers"></div>
+		<div class="numbers"></div>
+		<div class="numbers"></div>
+		<div class="numbers"></div>
+		<div class="numbers"></div>
+		<div class="numbers"></div>
+		
+		<script>
+			let button = document.getElementById("button");
+			let display = document.getElementById("display");
+			let numbers = document.getElementsByClassName("numbers");
+			let reset = document.getElementById("reset");
+						
+			let i = 0;
+			button.onclick = function()
+			{
+				if (i < numbers.length - 1)
+				{
+					display.innerHTML = "";
+					display.style.animation = "mymove 2s";
+					setTimeout(GenAssignNum, 2300);
+					setTimeout(clearAnimation, 2300);
+					setTimeout(function(){i++}, 2400);
+				}
+				else if (i == numbers.length - 1)
+				{
+					display.innerHTML = "";
+					display.style.animation = "mymove 2s";
+					setTimeout(GenAssignNum, 2300);
+					setTimeout(clearAnimation, 2300);
+					setTimeout(function(){i++}, 2400);
+					button.style.backgroundColor = "#eeeeee";
+					button.disabled = true;
+					reset.style.display = "inline-block";
+				}
+			}
+						
+			reset.onclick = function()
+			{
+				i = 0;
+				for (i = 0; i < numbers.length; i++)
+				{
+					numbers[i].innerHTML = "";
+					numbers[i].className = numbers[i].className.replace("active","");
+				}
+				display.innerHTML = "";
+				button.style.backgroundColor = "yellow";
+				button.disabled = false;
+				reset.style.display = "none";
+				while (numArray.length > 0) 
+				{
+					numArray.pop();
+				}
+				i = 0;
+			}
+						
+			var numArray = [];
+			function GenAssignNum()
+			{
+				let num = Math.floor(Math.random() * (50 - 1) ) + 1;
+				if (numArray.indexOf(num) === -1) 
+				{
+					numArray.push(num);	
+					display.innerHTML = numArray[i];
+					numbers[i].className += " active";
+					numbers[i].innerHTML = display.innerHTML;
+				}
+				else
+				{
+					num = Math.floor(Math.random() * (50 - 1) ) + 1;
+					numArray.push(num);	
+					display.innerHTML = numArray[i];
+					numbers[i].className += " active";
+					numbers[i].innerHTML = display.innerHTML;
+				}
+			}
+						
+			function clearAnimation()
+			{
+				display.style.animation = "";
+			}
+		</script>
+	</body>
+</html>

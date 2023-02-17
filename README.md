@@ -1,6 +1,6 @@
 # About
 
-{% include youtube.html id="Qi1NeSfEjD0" %}
+<img src="./docs/Picture1.png"  style="width: 400px">
 Mark Six is a lottery game organized by the Hong Kong Jockey Club.
 This programme helps players to generate 6 unique numbers for the game.
 
